@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\Hungx\\Documents\\Netbeans libraries\\TimingFramework-0.55.jar",
+        "c:\\Users\\Hungx\\Documents\\Netbeans libraries\\sqljdbc\\sqljdbc42.jar"
+    ]
+}
