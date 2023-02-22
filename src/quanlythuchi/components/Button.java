@@ -1,4 +1,3 @@
-
 package quanlythuchi.components;
 
 import java.awt.Color;
@@ -64,9 +63,9 @@ public class Button extends JButton {
         //  Init Color
 
         setColor(Color.WHITE);
-        colorOver = new Color(179, 250, 160);
-        colorClick = new Color(152, 184, 144);
-        borderColor = new Color(30, 136, 56);
+        colorOver = new Color(179,250,160);
+        colorClick = new Color(152,184,144);
+        borderColor = new Color(30,136,56);
         setContentAreaFilled(false);
         //  Add event mouse
         addMouseListener(new MouseAdapter() {

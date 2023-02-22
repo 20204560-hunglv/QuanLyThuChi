@@ -350,7 +350,6 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/quanlythuchi/img/icons8_username_40px.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtusername">

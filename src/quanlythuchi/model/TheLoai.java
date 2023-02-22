@@ -5,10 +5,9 @@ public class TheLoai {
     public TheLoai() {
     }
 
-    public TheLoai(int idTheLoai, String tenTheLoai, int gioiHan, int idCha) {
+    public TheLoai(int idTheLoai, String tenTheLoai, int idCha) {
         this.idTheLoai = idTheLoai;
         this.tenTheLoai = tenTheLoai;
-        this.gioiHan = gioiHan;
         this.idCha = idCha;
     }
 
@@ -28,14 +27,6 @@ public class TheLoai {
         this.tenTheLoai = tenTheLoai;
     }
 
-    public int getGioiHan() {
-        return gioiHan;
-    }
-
-    public void setGioiHan(int gioiHan) {
-        this.gioiHan = gioiHan;
-    }
-
     public int getIdCha() {
         return idCha;
     }
@@ -46,7 +37,6 @@ public class TheLoai {
     
     private int idTheLoai;
     private String tenTheLoai;
-    private int gioiHan;
     private int idCha;
 
     @Override

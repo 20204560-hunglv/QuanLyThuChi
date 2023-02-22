@@ -208,7 +208,6 @@ public class LoginRegister extends javax.swing.JFrame {
         jLabel1.setText("Đăng nhập");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quanlythuchi/img/icons8_username_40px.png"))); // NOI18N
-        jLabel2.setToolTipText("");
 
         txtusername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtusername.setForeground(new java.awt.Color(25, 125, 225));
@@ -348,15 +347,15 @@ public class LoginRegister extends javax.swing.JFrame {
             labelNote1.setText("Hãy nhập đầy đủ thông tin");
         } else if (!jPasswordField2.getText().equals(jPasswordField3.getText())) {
             labelNote1.setText("Mật khẩu không giống nhau");
-        } else if (jdbcConnection.checkTaiKhoan(jTextField2.getText())) {
+        } else if (cd.checkTaiKhoan(jTextField2.getText())) {
             labelNote1.setText("Tài khoản đã tồn tại");
         } else {
             labelNote1.setText("");
-            if (jdbcConnection.register(jTextField2.getText(), jPasswordField2.getText())) {
+            if (cd.register(jTextField2.getText(), jPasswordField2.getText())) {
                 String username=jTextField2.getText();
                 String pass=jPasswordField2.getText();        
                 labelNote1.setText("Đăng ký thành công. Đăng nhập !");
-                tk = jdbcConnection.getTaiKhoan(username, pass);
+                tk = cd.getTaiKhoan(username, pass);
                 cd.insertThongBao(nowTime+", Chúc mừng bạn đã đăng ký tài khoản thành công ^_^", tk.getIdTaiKhoan());
             }
             else labelNote1.setText("Đăng ký thất bại");
@@ -368,8 +367,8 @@ public class LoginRegister extends javax.swing.JFrame {
             labelNote.setText("Hãy nhập đầy đủ thông tin");
         } else {
             labelNote.setText("");
-            if (jdbcConnection.signIn(txtusername.getText(), txtpassword.getText())) {
-                tk = jdbcConnection.getTaiKhoan(txtusername.getText(), txtpassword.getText());
+            if (cd.signIn(txtusername.getText(), txtpassword.getText())) {
+                tk = cd.getTaiKhoan(txtusername.getText(), txtpassword.getText());
                 new Home(tk).setVisible(true);
                 setVisible(false);
             } else {

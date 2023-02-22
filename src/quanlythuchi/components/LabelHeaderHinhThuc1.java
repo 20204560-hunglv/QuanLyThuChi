@@ -52,7 +52,7 @@ public class LabelHeaderHinhThuc1 extends JLabel {
             }else if (indexColor==8) {
                 g = new GradientPaint(0, 0, colors.get(indexColor), 0, getHeight(), colors.get(indexColor));
             }else {
-                g = new GradientPaint(0, 0, colors.get(indexColor), 0, getHeight(), colors.get(indexColor));
+                g = new GradientPaint(0, 0, colors.get(9), 0, getHeight(), colors.get(9));
             }
             g2.setPaint(g);
             g2.fillRoundRect(0, 0, getWidth(), getHeight(), 1, 1);
