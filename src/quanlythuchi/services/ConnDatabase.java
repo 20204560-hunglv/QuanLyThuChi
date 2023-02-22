@@ -703,4 +703,24 @@ public class ConnDatabase {
             e.printStackTrace();
         }
     }
+    public void deleteTaiKhoan(int idtaikhoan) {
+        try {
+            Statement st = conn.createStatement();
+            String deleteThongBao = "delete from THONGBAO where ID_TaiKhoan="+idtaikhoan+"  ";
+            st.executeUpdate(deleteThongBao);
+            
+            String deleteGioiHan = "delete from GIOIHANCHI where ID_TaiKhoan="+idtaikhoan+"  ";
+            st.executeUpdate(deleteGioiHan);
+            
+            String deleteGiaoDich = "delete from GIAODICH where ID_TaiKhoan="+idtaikhoan+"  ";
+            st.executeUpdate(deleteGiaoDich);
+            
+            String deleteTaiKhoan = "delete from TAIKHOAN where ID_TaiKhoan="+idtaikhoan+"  ";
+            st.executeUpdate(deleteTaiKhoan);
+            
+            st.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -93,7 +93,7 @@ public class Home extends javax.swing.JFrame {
                     if (tienThuChi.getValues() >= (double) hanmucCanTim.getGioiHan()) {
                         MessageDialog messageDialog = new MessageDialog(this);
                         messageDialog.showMessage("Thông báo", "Bạn đã chi tiền đến giới hạn của hạn mức " + hanmucCanTim.getTenHanMuc() + "!");
-                        cd.insertThongBao(nowTime+"Bạn đã chi tiền đến giới hạn của hạn mức " + hanmucCanTim.getTenHanMuc() + "!", tk.getIdTaiKhoan());
+                        cd.insertThongBao(nowTime + "Bạn đã chi tiền đến giới hạn của hạn mức " + hanmucCanTim.getTenHanMuc() + "!", tk.getIdTaiKhoan());
                     }
                 }
             }
@@ -109,7 +109,7 @@ public class Home extends javax.swing.JFrame {
             String tenhanmuc = cd.tenTheLoai(idTheLoai);
             for (TienThuChi tienThuChi : modelPieCharts) {
                 if (tienThuChi.getName().equals(tenhanmuc)) {
-                    double phantram = (tienThuChi.getValues()) / ((double) hanmuc.getGioiHan())*100;
+                    double phantram = (tienThuChi.getValues()) / ((double) hanmuc.getGioiHan()) * 100;
                     String ghiChu = getPercentage(phantram) + "%";
                     cd.upDateHanMuc(tk.getIdTaiKhoan(), idTheLoai, ghiChu);
                 }
@@ -927,6 +927,7 @@ public class Home extends javax.swing.JFrame {
         ThietLap = new javax.swing.JPanel();
         button2 = new quanlythuchi.components.Button();
         button4 = new quanlythuchi.components.Button();
+        btnXoaTK = new quanlythuchi.components.Button();
         ThongBao = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jPanelTbao = new javax.swing.JPanel();
@@ -3056,7 +3057,7 @@ public class Home extends javax.swing.JFrame {
         button2.setBorderColor(new java.awt.Color(25, 150, 245));
         button2.setColorClick(new java.awt.Color(102, 204, 255));
         button2.setColorOver(new java.awt.Color(255, 255, 255));
-        button2.setPreferredSize(new java.awt.Dimension(700, 200));
+        button2.setPreferredSize(new java.awt.Dimension(700, 150));
         button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button2ActionPerformed(evt);
@@ -3068,10 +3069,22 @@ public class Home extends javax.swing.JFrame {
         button4.setBorderColor(new java.awt.Color(25, 150, 245));
         button4.setColorClick(new java.awt.Color(102, 204, 255));
         button4.setColorOver(new java.awt.Color(255, 255, 255));
-        button4.setPreferredSize(new java.awt.Dimension(700, 200));
+        button4.setPreferredSize(new java.awt.Dimension(700, 150));
         button4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button4ActionPerformed(evt);
+            }
+        });
+
+        btnXoaTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quanlythuchi/img/icons8_delete_100px.png"))); // NOI18N
+        btnXoaTK.setText("Xóa tài khoản");
+        btnXoaTK.setBorderColor(new java.awt.Color(25, 150, 245));
+        btnXoaTK.setColorClick(new java.awt.Color(102, 204, 255));
+        btnXoaTK.setColorOver(new java.awt.Color(255, 255, 255));
+        btnXoaTK.setPreferredSize(new java.awt.Dimension(700, 150));
+        btnXoaTK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaTKActionPerformed(evt);
             }
         });
 
@@ -3082,6 +3095,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(ThietLapLayout.createSequentialGroup()
                 .addGap(226, 226, 226)
                 .addGroup(ThietLapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnXoaTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(224, Short.MAX_VALUE))
@@ -3089,11 +3103,13 @@ public class Home extends javax.swing.JFrame {
         ThietLapLayout.setVerticalGroup(
             ThietLapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ThietLapLayout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
+                .addContainerGap(94, Short.MAX_VALUE)
                 .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76)
+                .addGap(42, 42, 42)
                 .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107))
+                .addGap(38, 38, 38)
+                .addComponent(btnXoaTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76))
         );
 
         Slide.add(ThietLap, "card4");
@@ -3331,12 +3347,14 @@ public class Home extends javax.swing.JFrame {
             messageDialog.showMessage("Thông báo", "Bạn có muốn xóa giao dịch này?");
             if (messageDialog.isChoose()) {
                 Id_GiaoDich = list.get(index).getId_giaodich();
-                int idtheloai =list.get(index).getId_theloai();
+                int idtheloai = list.get(index).getId_theloai();
                 cd.deleteGiaoDich(Id_GiaoDich);
-                
-                String hinhthuc =cd.tenHinhThuc(idtheloai);
-                if (hinhthuc.equals("Chi tiền")) ghiChu();
-                
+
+                String hinhthuc = cd.tenHinhThuc(idtheloai);
+                if (hinhthuc.equals("Chi tiền")) {
+                    ghiChu();
+                }
+
                 setIndex(-1);
                 list.clear();
                 getTableTime(firstTime, seconTime);
@@ -3381,13 +3399,13 @@ public class Home extends javax.swing.JFrame {
             MessageDialog messageDialog = new MessageDialog(this);
             messageDialog.showMessage("Lỗi", "Vui lòng nhập đúng định dạng");
         }
-        
+
         String hinhthuc = cd.tenHinhThuc(idTheLoai_Add);
-        if (hinhthuc.equals("Chi tiền")){
+        if (hinhthuc.equals("Chi tiền")) {
             checkHanMuc(idTheLoai_Add);
             ghiChu();
         }
-        
+
         list.clear();
         thangNay();
         getTableTime(firstTime, seconTime);
@@ -3552,7 +3570,7 @@ public class Home extends javax.swing.JFrame {
             MessageDialog messageDialog = new MessageDialog(this);
             messageDialog.showMessage("Lỗi", "Có lỗi xảy ra!");
         }
-        
+
     }//GEN-LAST:event_button5ActionPerformed
 
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
@@ -3653,9 +3671,9 @@ public class Home extends javax.swing.JFrame {
             MessageDialog messageDialog = new MessageDialog(this);
             messageDialog.showMessage("Lỗi", "Vui lòng nhập đúng định dạng");
         }
-        
+
         String hinhthuc = cd.tenHinhThuc(idTheLoai_edit);
-        if (hinhthuc.equals("Chi tiền")){
+        if (hinhthuc.equals("Chi tiền")) {
             checkHanMuc(idTheLoai_edit);
             ghiChu();
         }
@@ -3800,7 +3818,7 @@ public class Home extends javax.swing.JFrame {
                 cd.deleteHanMuc(tk.getIdTaiKhoan(), idTheLoai);
                 listHanMuc.clear();
                 getTableHanMuc();
-                indexRowHanMuc=-1;
+                indexRowHanMuc = -1;
             }
 
         }
@@ -3869,9 +3887,21 @@ public class Home extends javax.swing.JFrame {
         ghiChu();
         listHanMuc.clear();
         getTableHanMuc();
-        indexRowHanMuc=-1;
+        indexRowHanMuc = -1;
         panelSlideHanMuc.show(0);
     }//GEN-LAST:event_suaHMActionPerformed
+
+    private void btnXoaTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaTKActionPerformed
+        // TODO add your handling code here:
+        MessageDialog messageDialog = new MessageDialog(this);
+        messageDialog.showMessage("Chú ý", "Nếu bạn xóa tài khoản này, tất cả các ghi chép liên quân sẽ bị xóa. Dữ liệu bị xóa không thể khôi phục lại được. Bạn có thực sự muốn xóa không không?");
+        if (messageDialog.isChoose()) {
+            cd.deleteTaiKhoan(tk.getIdTaiKhoan());
+            messageDialog.showMessage("Thông báo", "Xóa tài khoản thành công");
+            new LoginRegister().setVisible(true);
+            setVisible(false);
+        }
+    }//GEN-LAST:event_btnXoaTKActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -3899,6 +3929,7 @@ public class Home extends javax.swing.JFrame {
     private quanlythuchi.components.Button btnChon1;
     private quanlythuchi.components.Button btnSuaHM;
     private quanlythuchi.components.Button btnXoaHM;
+    private quanlythuchi.components.Button btnXoaTK;
     private quanlythuchi.components.Button button1;
     private quanlythuchi.components.Button button13;
     private quanlythuchi.components.Button button14;

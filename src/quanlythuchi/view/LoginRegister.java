@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import quanlythuchi.components.MessageDialog;
 import quanlythuchi.services.JdbcConnection;
 import quanlythuchi.model.TaiKhoan;
 import quanlythuchi.services.ConnDatabase;
@@ -19,6 +20,7 @@ public class LoginRegister extends javax.swing.JFrame {
     private ConnDatabase cd = new ConnDatabase();
     private TaiKhoan tk = new TaiKhoan();
     private String nowTime;
+
     public LoginRegister() {
         initComponents();
         setIconImage(new ImageIcon(LoginRegister.class.getResource("/quanlythuchi/img/icons8_Stack_of_Money_127px.png")).getImage());
@@ -39,6 +41,7 @@ public class LoginRegister extends javax.swing.JFrame {
             }
         });
     }
+
     public void Time() {
         new Timer(0, new ActionListener() {
             @Override
@@ -50,6 +53,7 @@ public class LoginRegister extends javax.swing.JFrame {
         }
         ).start();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -344,27 +348,33 @@ public class LoginRegister extends javax.swing.JFrame {
 
     private void register() {
         if (jTextField2.getText().equals("") || jPasswordField2.getText().equals("") || jPasswordField3.getText().equals("")) {
-            labelNote1.setText("Hãy nhập đầy đủ thông tin");
+            MessageDialog messageDialog = new MessageDialog(this);
+            messageDialog.showMessage("Lỗi", "Hãy nhập đầy đủ thông tin");
         } else if (!jPasswordField2.getText().equals(jPasswordField3.getText())) {
-            labelNote1.setText("Mật khẩu không giống nhau");
+            MessageDialog messageDialog = new MessageDialog(this);
+            messageDialog.showMessage("Lỗi", "Mật khẩu không giống nhau");
         } else if (cd.checkTaiKhoan(jTextField2.getText())) {
-            labelNote1.setText("Tài khoản đã tồn tại");
+            MessageDialog messageDialog = new MessageDialog(this);
+            messageDialog.showMessage("Chú ý", "Tài khoản này đã tồn tại");
         } else {
             labelNote1.setText("");
             if (cd.register(jTextField2.getText(), jPasswordField2.getText())) {
-                String username=jTextField2.getText();
-                String pass=jPasswordField2.getText();        
-                labelNote1.setText("Đăng ký thành công. Đăng nhập !");
+                String username = jTextField2.getText();
+                String pass = jPasswordField2.getText();
+                MessageDialog messageDialog = new MessageDialog(this);
+                messageDialog.showMessage("Chúc mừng", "Đăng ký thành công!");
                 tk = cd.getTaiKhoan(username, pass);
-                cd.insertThongBao(nowTime+", Chúc mừng bạn đã đăng ký tài khoản thành công ^_^", tk.getIdTaiKhoan());
+                cd.insertThongBao(nowTime + ", Chúc mừng bạn đã đăng ký tài khoản thành công ^_^", tk.getIdTaiKhoan());
+            } else {
+                labelNote1.setText("Đăng ký thất bại");
             }
-            else labelNote1.setText("Đăng ký thất bại");
         }
     }
 
     private void login() {
         if (txtusername.getText().equals("") || txtpassword.getText().equals("")) {
-            labelNote.setText("Hãy nhập đầy đủ thông tin");
+            MessageDialog messageDialog = new MessageDialog(this);
+            messageDialog.showMessage("Lỗi", "Hãy nhập đầy đủ thông tin!");
         } else {
             labelNote.setText("");
             if (cd.signIn(txtusername.getText(), txtpassword.getText())) {
@@ -372,7 +382,8 @@ public class LoginRegister extends javax.swing.JFrame {
                 new Home(tk).setVisible(true);
                 setVisible(false);
             } else {
-                labelNote.setText("Tài khoản hoặc mật khẩu không đúng");
+                MessageDialog messageDialog = new MessageDialog(this);
+                messageDialog.showMessage("Lỗi", "Tài khoản hoặc mật khẩu không đúng");
             }
         }
     }
