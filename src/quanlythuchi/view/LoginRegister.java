@@ -201,6 +201,7 @@ public class LoginRegister extends javax.swing.JFrame {
         setResizable(false);
 
         panelSlide.setBackground(new java.awt.Color(255, 204, 255));
+        panelSlide.setLayout(new java.awt.CardLayout());
 
         DangNhapPanel.setBackground(new java.awt.Color(255, 255, 255));
         DangNhapPanel.setAlignmentX(0.0F);
@@ -296,20 +297,7 @@ public class LoginRegister extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout panelSlideLayout = new javax.swing.GroupLayout(panelSlide);
-        panelSlide.setLayout(panelSlideLayout);
-        panelSlideLayout.setHorizontalGroup(
-            panelSlideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(panelSlideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(DangNhapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelSlideLayout.setVerticalGroup(
-            panelSlideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-            .addGroup(panelSlideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(DangNhapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        panelSlide.add(DangNhapPanel, "card2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

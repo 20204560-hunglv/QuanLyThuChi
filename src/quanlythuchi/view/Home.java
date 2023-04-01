@@ -223,11 +223,11 @@ public class Home extends javax.swing.JFrame {
         }
         for (int i = 0; i < index; i++) {
             String hinh_thuc = list.get(i).getHinhThuc();
-            long soTien = list.get(i).getSoTien();
+            double soTien = list.get(i).getSoTien();
             String thoiGian = list.get(i).getThoiGian();
             String theLoai = list.get(i).getTheLoai();
             String moTa = list.get(i).getMoTa();
-            defaultTableModel.addRow(new Object[]{hinh_thuc, soTien, thoiGian, theLoai, moTa});
+            defaultTableModel.addRow(new Object[]{hinh_thuc, (long)soTien, thoiGian, theLoai, moTa});
         }
     }
 
@@ -239,11 +239,11 @@ public class Home extends javax.swing.JFrame {
         int index = list.size();
         for (int i = 0; i < index; i++) {
             String hinh_thuc = list.get(i).getHinhThuc();
-            long soTien = list.get(i).getSoTien();
+            double soTien = list.get(i).getSoTien();
             String thoiGian = list.get(i).getThoiGian();
             String theLoai = list.get(i).getTheLoai();
             String moTa = list.get(i).getMoTa();
-            defaultTableModel.addRow(new Object[]{hinh_thuc, soTien, thoiGian, theLoai, moTa});
+            defaultTableModel.addRow(new Object[]{hinh_thuc, (long)soTien, thoiGian, theLoai, moTa});
         }
     }
 
@@ -256,11 +256,11 @@ public class Home extends javax.swing.JFrame {
         int index = list.size();
         for (int i = 0; i < index; i++) {
             String hinh_thuc = list.get(i).getHinhThuc();
-            long soTien = list.get(i).getSoTien();
+            double soTien = list.get(i).getSoTien();
             String thoiGian = list.get(i).getThoiGian();
             String theLoai = list.get(i).getTheLoai();
             String moTa = list.get(i).getMoTa();
-            defaultTableModel.addRow(new Object[]{hinh_thuc, soTien, thoiGian, theLoai, moTa});
+            defaultTableModel.addRow(new Object[]{hinh_thuc, (long)soTien, thoiGian, theLoai, moTa});
         }
     }
 

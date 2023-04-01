@@ -5,7 +5,7 @@ public class GiaoDich {
     public GiaoDich() {
     }
 
-    public GiaoDich(String hinhThuc, long soTien, String thoiGian, String theLoai, String moTa, int id_giaodich, int id_theloai) {
+    public GiaoDich(String hinhThuc, double soTien, String thoiGian, String theLoai, String moTa, int id_giaodich, int id_theloai) {
         this.hinhThuc = hinhThuc;
         this.soTien = soTien;
         this.thoiGian = thoiGian;
@@ -24,11 +24,11 @@ public class GiaoDich {
         this.hinhThuc = hinhThuc;
     }
 
-    public long getSoTien() {
+    public double getSoTien() {
         return soTien;
     }
 
-    public void setSoTien(int soTien) {
+    public void setSoTien(double soTien) {
         this.soTien = soTien;
     }
 
@@ -73,7 +73,7 @@ public class GiaoDich {
     }
     
     private String hinhThuc;
-    private long soTien;
+    private double soTien;
     private String thoiGian;
     private String theLoai;
     private String moTa;
