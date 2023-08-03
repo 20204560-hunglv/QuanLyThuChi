@@ -1,5 +1,6 @@
 package quanlythuchi.view;
 
+import Controller.UserController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -20,7 +21,25 @@ public class LoginRegister extends javax.swing.JFrame {
     private ConnDatabase cd = new ConnDatabase();
     private TaiKhoan tk = new TaiKhoan();
     private String nowTime;
+    private String username;
+    private String password;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     public LoginRegister() {
         initComponents();
         setIconImage(new ImageIcon(LoginRegister.class.getResource("/quanlythuchi/img/icons8_Stack_of_Money_127px.png")).getImage());
@@ -335,23 +354,25 @@ public class LoginRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_button2ActionPerformed
 
     private void register() {
-        if (jTextField2.getText().equals("") || jPasswordField2.getText().equals("") || jPasswordField3.getText().equals("")) {
+        setUsername(jTextField2.getText());
+        setPassword(jPasswordField2.getText());
+        String passCofirm =jPasswordField3.getText();
+        UserController uc = new UserController();
+        if (uc.checkInput(username, password, passCofirm)) {
             MessageDialog messageDialog = new MessageDialog(this);
             messageDialog.showMessage("Lỗi", "Hãy nhập đầy đủ thông tin");
-        } else if (!jPasswordField2.getText().equals(jPasswordField3.getText())) {
+        } else if (uc.checkPass(password, passCofirm)) {
             MessageDialog messageDialog = new MessageDialog(this);
             messageDialog.showMessage("Lỗi", "Mật khẩu không giống nhau");
-        } else if (cd.checkTaiKhoan(jTextField2.getText())) {
+        } else if (uc.checkTaiKhoan(username)) {
             MessageDialog messageDialog = new MessageDialog(this);
             messageDialog.showMessage("Chú ý", "Tài khoản này đã tồn tại");
         } else {
             labelNote1.setText("");
-            if (cd.register(jTextField2.getText(), jPasswordField2.getText())) {
-                String username = jTextField2.getText();
-                String pass = jPasswordField2.getText();
+            if (uc.create(username, password)) {
                 MessageDialog messageDialog = new MessageDialog(this);
                 messageDialog.showMessage("Chúc mừng", "Đăng ký thành công!");
-                tk = cd.getTaiKhoan(username, pass);
+                tk = cd.getTaiKhoan(username, password);
                 cd.insertThongBao(nowTime + ", Chúc mừng bạn đã đăng ký tài khoản thành công ^_^", tk.getIdTaiKhoan());
             } else {
                 labelNote1.setText("Đăng ký thất bại");
